@@ -1,2 +1,2 @@
 # markdown
-markdown files
+try MCP to connect to git
