@@ -1,0 +1,20 @@
+{
+  "model": "gemini-code-assist",
+  "provider": "local",
+  "servers": [
+    {
+      "type": "process",
+      "command": "gemini",
+      "args": ["--stream"],
+      "input": {
+        "stdin": true
+      },
+      "output": {
+        "stdout": true
+      },
+      "description": "Google Gemini 2.5 CLI (Free Tier)",
+      "temperature": 0.7,
+      "streaming": true
+    }
+  ]
+}
