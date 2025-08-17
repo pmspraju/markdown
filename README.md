@@ -30,13 +30,13 @@ textblob
     - Create a ssh key
         - Enter file in which to save the key (/home/madhu/.ssh/id_ed25519):
         - If you just hit Enter, it defaults to ~/.ssh/id_ed25519. But you can override that and save it anywhere—like:
-```
-ssh-keygen -t ed25519 -C "hugging face email@example.com"
-```
+            ```
+            ssh-keygen -t ed25519 -C "hugging face email@example.com"
+            ```
     - setup ssh key path. You're explicitly telling the agent: “Here’s the path to my private key.” If you saved it elsewhere, you'd need to use that custom path instead.
-```
-ssh-add ~/.ssh/id_ed25519
-```
+            ```
+            ssh-add ~/.ssh/id_ed25519
+            ```
     - Copy the created ssh key and add to the huggingface profile under settings/SSH and GPG keys
 
 7. Commit the local code to the hf space repo
