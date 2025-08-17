@@ -49,6 +49,7 @@ textblob
     - If https and need to set to ssh, then,
         ```
         git remote set-url origin git@hf.co:spaces/pmspraju/mcp-sentiment
+        git remote -v
         origin  git@hf.co:spaces/pmspraju/mcp-sentiment (fetch)
         origin  git@hf.co:spaces/pmspraju/mcp-sentiment (push)
         ```
@@ -61,6 +62,7 @@ git remote add origin https://huggingface.co/spaces/pmspraju/mcp-sentiment
 git push -u origin main
 ```
 
-Your MCP server will now be available at:
+9. Your MCP server will now be available at:
 ```
 https://huggingface.co/spaces/pmspraju/mcp-sentiment
+```
