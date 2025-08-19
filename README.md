@@ -64,5 +64,31 @@ git push -u origin main
 
 9. Your MCP server will now be available at:
 ```
-https://huggingface.co/spaces/pmspraju/mcp-sentiment
+https://YOUR_USERNAME-mcp-sentiment.hf.space/gradio_api/mcp/sse
+https://pmspraju-mcp-sentiment.hf.space/gradio_api/mcp/sse
 ```
+
+## MCP Server url 
+---
+### 🧭 MCP Endpoint Comparison Table
+
+| **Server Type**         | **Tool Hosting Method**                          | **Typical Endpoint**                            | **When to Use**                                                                 |
+|-------------------------|--------------------------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------|
+| **Gradio (native MCP)** | `demo.launch(mcp_server=True)`                  | `/proxy/mcp/sse` *(on HF Spaces)*               | ✅ Use when deploying a Gradio app with built-in MCP on Hugging Face Spaces     |
+|                         |                                                  | `/mcp/sse` *(sometimes exposed directly)*        | ✅ Use if Space exposes MCP directly without proxy routing                      |
+|                         |                                                  | `/gradio_api/mcp/sse` *(rare)*                  | ❌ Avoid unless explicitly configured—often leads to timeouts                   |
+| **smoltools.mcp**       | `MCPServer(...).serve()`                        | `/gradio_api/mcp/sse` *(default)*               | ✅ Use when using `smoltools.mcp.MCPServer` locally or on Spaces               |
+|                         |                                                  | `/proxy/mcp/sse` *(on HF Spaces)*               | ✅ Use if deploying smoltools-based server on Hugging Face Spaces              |
+| **Claude Code Pro / Gemini CLI** | CLI-based tool registration via MCP config | Local subprocess or CLI invocation              | ✅ Use when invoking tools locally via CLI or subprocess (not via SSE)         |
+| **Local Dev (custom)**  | Custom FastAPI/Flask MCP server                 | `http://localhost:8000/mcp/sse`                 | ✅ Use for local testing or custom tool orchestration                          |
+
+---
+
+### 🧠 Quick Rules of Thumb
+
+- ✅ **Use `/proxy/mcp/sse`** for Gradio-based Hugging Face Spaces with `mcp_server=True`
+- ✅ **Use `/gradio_api/mcp/sse`** only if you're using `smoltools.mcp.MCPServer` and it's configured to expose that path
+- ❌ **Avoid guessing endpoints**—test with `curl` or `requests.get()` to confirm they respond with `200 OK`
+- ✅ **Use `MCPClient.from_space("user/space")`** when possible—it auto-resolves the correct endpoint
+
+---
